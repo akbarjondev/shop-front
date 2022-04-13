@@ -21,7 +21,10 @@ const rSetCategoryActive = (state = InitialActiveCategoryState, action) => {
 // OPEN AND SELECT CURRENCY
 const initialCurrencyState = {
   isOpen: false,
-  currentCurrency: "USD",
+  currentCurrency: {
+    symbol: "$",
+    label: "USD",
+  },
 };
 
 const rCurrency = (state = initialCurrencyState, action) => {

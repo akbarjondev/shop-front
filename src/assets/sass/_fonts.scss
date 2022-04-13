@@ -1,0 +1,79 @@
+// Raleway 600, 400, 300, 500, 700
+// Roboto Condensed 700 +
+// Source Sans Pro 400
+// Roboto 400 +
+
+/* roboto-condensed-700 - latin */
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""),
+    url("../fonts/roboto-condensed-v24-latin-700.woff2") format("woff2"),
+    url("../fonts/roboto-condensed-v24-latin-700.woff") format("woff");
+}
+
+/* roboto-regular - latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/roboto-v29-latin-regular.woff2") format("woff2"),
+    url("../fonts/roboto-v29-latin-regular.woff") format("woff");
+}
+
+/* source-sans-pro-regular - latin */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("../fonts/source-sans-pro-v19-latin-regular.woff2") format("woff2"),
+    url("../fonts/source-sans-pro-v19-latin-regular.woff") format("woff");
+}
+
+/* raleway-300 - latin */
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/raleway-v26-latin-300.woff2") format("woff2"),
+    url("../fonts/raleway-v26-latin-300.woff") format("woff");
+}
+
+/* raleway-regular - latin */
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("../fonts/raleway-v26-latin-regular.woff2") format("woff2"),
+    url("../fonts/raleway-v26-latin-regular.woff") format("woff");
+}
+
+/* raleway-500 - latin */
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/raleway-v26-latin-500.woff2") format("woff2"),
+    url("../fonts/raleway-v26-latin-500.woff") format("woff");
+}
+
+/* raleway-600 - latin */
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/raleway-v26-latin-600.woff2") format("woff2"),
+    url("../fonts/raleway-v26-latin-600.woff") format("woff");
+}
+
+/* raleway-700 - latin */
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/raleway-v26-latin-700.woff2") format("woff2"),
+    url("../fonts/raleway-v26-latin-700.woff") format("woff");
+}

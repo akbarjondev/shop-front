@@ -1,0 +1,5 @@
+export const SET_CATEGORY_ACTIVE = "SET_CATEGORY_ACTIVE";
+
+export const IS_CURRENCY_OPEN = "IS_CURRENCY_OPEN";
+
+export const SET_CURRENCY = "SET_CURRENCY";

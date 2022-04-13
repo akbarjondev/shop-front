@@ -19,6 +19,9 @@ class App extends React.Component {
         <Provider store={store}>
           <BrowserRouter>
             <StyledApp>
+              <h1 className="visually-hidden">
+                Make easy your online shopping
+              </h1>
               <Header />
               <Routes>
                 <Route path="/" element={<Home />} />

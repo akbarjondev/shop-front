@@ -16,7 +16,11 @@ class CategoryList extends React.Component {
             return (
               <li className="list__item" key={category.name}>
                 <button
-                  className="list__btn"
+                  className={
+                    this.props.activeCategory === category.name
+                      ? "list__btn list__btn--active"
+                      : "list__btn"
+                  }
                   onClick={() =>
                     this.props.dispatchSetActiveCategory(category.name)
                   }

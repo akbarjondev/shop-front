@@ -1,7 +1,3 @@
-# Online Shop with React
-
-## Requirements
-
 ## GraphQL API | Connect backend
 
 Backend should run on `http://localhost:4000`

@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-export default styled.div.attrs({
-  className: "container",
-})`
+export default styled.header`
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 `;

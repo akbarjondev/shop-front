@@ -4,7 +4,7 @@ import StyledCard from "./Card.style";
 class Card extends React.Component {
   render() {
     return (
-      <StyledCard>
+      <StyledCard inStock={this.props.inStock}>
         <div className="card__info">
           <h3 className="card__title">{this.props.title}</h3>
           <div className="card__price">{this.props.price}</div>
@@ -17,9 +17,12 @@ class Card extends React.Component {
             width={354}
             height={330}
           />
-          <button className="card__cart-btn">
-            <span className="visually-hidden">Add item to cart</span>
-          </button>
+          {this.props.inStock ? (
+            <button className="card__cart-btn">
+              <span className="visually-hidden">Add item to cart</span>
+            </button>
+          ) : null}
+          <div className="card__out-of-stock">Out of stock</div>
         </div>
       </StyledCard>
     );

@@ -15,8 +15,8 @@ class CardList extends React.Component {
 
   render() {
     const { data } = this.props;
-    console.log(this.props.categories.list[0]);
     const activeCategory = this.props.categories.activeCategory || "all";
+
     return (
       !data.loading &&
       this.props.categories.list.length && (
@@ -30,6 +30,7 @@ class CardList extends React.Component {
                   id={item.id}
                   image={item.gallery[0]}
                   title={item.name}
+                  inStock={item.inStock}
                   price={
                     this.props.currency.currentCurrency.symbol +
                     item.prices.filter(

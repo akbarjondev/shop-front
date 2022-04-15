@@ -4,6 +4,7 @@ export default styled.section.attrs({
   className: "categories",
 })`
   padding-top: 80px;
+  padding-bottom: 190px;
 
   .categories__heading {
     font-size: 42px;

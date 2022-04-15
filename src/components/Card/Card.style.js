@@ -10,6 +10,10 @@ export default styled.div.attrs({
   padding: 16px;
   background-color: ${colors.white};
   cursor: pointer;
+  transition: filter 0.2s ease;
+
+  // inStock
+  ${(props) => (props.inStock ? "opacity: 1;" : "opacity: 0.5;")}
 
   :hover {
     filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
@@ -49,6 +53,22 @@ export default styled.div.attrs({
     transform: translateY(48%);
     filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.1));
     cursor: pointer;
+    transition: transform 0.2s ease-out;
+
+    :hover {
+      transform: translateY(48%) scale(1.05);
+    }
+  }
+
+  .card__out-of-stock {
+    position: absolute;
+    display: ${(props) => (props.inStock ? "none" : "inline-block")};
+    text-transform: uppercase;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    line-height: 38px;
   }
 
   .card__info {

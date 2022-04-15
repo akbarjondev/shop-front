@@ -8,7 +8,7 @@ export default styled.ul.attrs({
   align-items: center;
   list-style-type: none;
   margin: 0;
-  padding: 24px 0 15px;
+  padding: 0;
 
   .list__btn {
     display: inline-block;

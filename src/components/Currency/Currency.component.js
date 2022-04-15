@@ -6,12 +6,38 @@ import { aCurrencyOpen, aSetCurrency } from "./../../store/common.actions";
 import { getCurrencies } from "./../../graphql/queries";
 
 class Currency extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.currencyRef = React.createRef();
+    this.clickOutside = this.clickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("mousedown", this.clickOutside);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("mousedown", this.clickOutside);
+  }
+
+  clickOutside(event) {
+    if (
+      this.props.currency.isOpen &&
+      this.currencyRef &&
+      !this.currencyRef.current.contains(event.target)
+    ) {
+      this.props.dispatchCurrencyOpen(false);
+    }
+  }
+
   render() {
     const { data } = this.props;
 
     return (
       !data.loading && (
         <StyledCurrency
+          ref={this.currencyRef}
           onClick={() =>
             this.props.dispatchCurrencyOpen(!this.props.currency.isOpen)
           }

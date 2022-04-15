@@ -1,18 +1,23 @@
 import { combineReducers } from "redux";
 import * as types from "./common.types";
 
-// SET CATEGORY ACTIVE IN HEADER
-const InitialActiveCategoryState = {
+// CATEGORIES
+const initialCategories = {
+  list: [],
   activeCategory: "all",
 };
-
-const rSetCategoryActive = (state = InitialActiveCategoryState, action) => {
+const rCategories = (state = initialCategories, action) => {
   switch (action.type) {
+    case types.LIST_CATEGORIES:
+      return {
+        ...state,
+        list: action.payload,
+      };
     case types.SET_CATEGORY_ACTIVE:
       return {
+        ...state,
         activeCategory: action.payload,
       };
-
     default:
       return state;
   }
@@ -47,6 +52,6 @@ const rCurrency = (state = initialCurrencyState, action) => {
 };
 
 export default combineReducers({
-  category: rSetCategoryActive,
   currency: rCurrency,
+  categories: rCategories,
 });

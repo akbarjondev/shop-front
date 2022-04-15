@@ -1,6 +1,11 @@
 import * as types from "./common.types";
 
-// CATEGORY
+// CATEGORIES
+export const aSaveCategories = (data) => ({
+  type: types.LIST_CATEGORIES,
+  payload: data,
+});
+
 export const aSetCategoryActive = (data) => ({
   type: types.SET_CATEGORY_ACTIVE,
   payload: data,

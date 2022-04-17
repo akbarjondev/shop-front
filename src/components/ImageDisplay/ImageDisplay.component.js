@@ -8,8 +8,6 @@ class ImageDisplay extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-
     return (
       <StyledImageDisplay>
         <div className="display__left">

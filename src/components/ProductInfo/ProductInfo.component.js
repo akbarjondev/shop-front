@@ -6,13 +6,12 @@ import StyledProductInfo from "./ProductInfo.style";
 import { getProductById } from "../../graphql/queries";
 import ImageDisplay from "../ImageDisplay/ImageDisplay.component";
 import { aSetActiveImage, aSetSize } from "./../../store/common.actions";
+import InfoTab from "../InfoTab/InfoTab.component";
 
 class ProductInfo extends React.Component {
   render() {
     const { data } = this.props;
     const product = data.product;
-
-    console.log(product);
 
     return (
       !data.loading && (
@@ -22,6 +21,7 @@ class ProductInfo extends React.Component {
             selectActiveImage={this.props.selectActiveImage}
             selectedImage={this.props.selectedImage}
           />
+          <InfoTab product={product} currency={this.props.currency} />
         </StyledProductInfo>
       )
     );
@@ -29,8 +29,9 @@ class ProductInfo extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  state,
   selectedImage: state.product.selectedImageURL,
+  selectedSize: state.product.selectedSize,
+  currency: state.currency,
 });
 
 const mapDispatchToProps = (dispatch) => ({

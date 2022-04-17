@@ -28,6 +28,7 @@ export default styled.div.attrs({
     font-size: 0;
     max-width: 610px;
     width: 100%;
+    margin-left: 40px;
 
     .display__main-image {
       width: 610px;

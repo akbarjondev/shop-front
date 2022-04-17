@@ -27,7 +27,7 @@ export const aSetActiveImage = (data) => ({
   payload: data,
 });
 
-export const aSetActiveSize = (data) => ({
+export const aSetSize = (data) => ({
   type: types.SET_ACTIVE_SIZE,
   payload: data,
 });

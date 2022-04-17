@@ -51,7 +51,30 @@ const rCurrency = (state = initialCurrencyState, action) => {
   }
 };
 
+// PRODUCT
+const initialProduct = {
+  selectedImageURL: "",
+  selectedSize: "M",
+};
+const rProduct = (state = initialProduct, action) => {
+  switch (action.type) {
+    case types.SET_ACTIVE_IMAGE:
+      return {
+        ...state,
+        selectedImageURL: action.payload,
+      };
+    case types.SET_ACTIVE_SIZE:
+      return {
+        ...state,
+        selectedSize: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   currency: rCurrency,
   categories: rCategories,
+  product: rProduct,
 });

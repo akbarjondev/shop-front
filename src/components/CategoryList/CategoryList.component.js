@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import StyledCategoryList from "./CategoryList.style";
 import { getCategories } from "./../../graphql/queries";
 import { aSetCategoryActive } from "./../../store/common.actions";
+import { Link } from "react-router-dom";
 
 class CategoryList extends React.Component {
   render() {
@@ -15,7 +16,8 @@ class CategoryList extends React.Component {
           {data.categories.map((category) => {
             return (
               <li className="list__item" key={category.name}>
-                <button
+                <Link
+                  to="/"
                   className={
                     this.props.activeCategory === category.name
                       ? "list__btn list__btn--active"
@@ -26,7 +28,7 @@ class CategoryList extends React.Component {
                   }
                 >
                   {category.name}
-                </button>
+                </Link>
               </li>
             );
           })}

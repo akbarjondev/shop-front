@@ -10,6 +10,10 @@ export default styled.ul.attrs({
   margin: 0;
   padding: 0;
 
+  a {
+    text-decoration: none;
+  }
+
   .list__btn {
     display: inline-block;
     padding: 0 16px 30px;

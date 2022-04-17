@@ -1,12 +1,14 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { Routes, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import StyledApp from "./App.style";
 import Home from "./../pages/Home";
 import Header from "./Header/Header.component";
 import store from "../store/common.store";
+import NoPage from "./NoPage/NoPage.component";
+import CartPage from "./../pages/CartPage";
+import ProductInfo from "./ProductInfo/ProductInfo.component";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000",
@@ -23,9 +25,18 @@ class App extends React.Component {
                 Make easy your online shopping
               </h1>
               <Header />
-              <Routes>
-                <Route path="/" element={<Home />} />
-              </Routes>
+              <Switch>
+                <Route path="/" exact>
+                  <Home />
+                </Route>
+                <Route path="/cart" exact>
+                  <CartPage />
+                </Route>
+                <Route path="/product/:productId" component={ProductInfo} />
+                <Route path="*">
+                  <NoPage />
+                </Route>
+              </Switch>
             </StyledApp>
           </BrowserRouter>
         </Provider>

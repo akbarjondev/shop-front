@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import StyledCardList from "./CardList.style";
 import Card from "./../Card/Card.component";
 import { connect } from "react-redux";
@@ -20,26 +21,27 @@ class CardList extends React.Component {
     return (
       !data.loading &&
       this.props.categories.list.length && (
-        <StyledCardList>
+        <StyledCardList listLength={this.props.categories.list.length}>
           {this.props.categories.list
             .filter((list) => list.name === activeCategory)[0]
             .products.map((item) => {
               return (
-                <Card
-                  key={item.id}
-                  id={item.id}
-                  image={item.gallery[0]}
-                  title={item.name}
-                  inStock={item.inStock}
-                  price={
-                    this.props.currency.currentCurrency.symbol +
-                    item.prices.filter(
-                      (price) =>
-                        price.currency.label ===
-                        this.props.currency.currentCurrency.label
-                    )[0].amount
-                  }
-                />
+                <Link to={`/product/${item.id}`} key={item.id}>
+                  <Card
+                    id={item.id}
+                    image={item.gallery[0]}
+                    title={item.name}
+                    inStock={item.inStock}
+                    price={
+                      this.props.currency.currentCurrency.symbol +
+                      item.prices.filter(
+                        (price) =>
+                          price.currency.label ===
+                          this.props.currency.currentCurrency.label
+                      )[0].amount
+                    }
+                  />
+                </Link>
               );
             })}
         </StyledCardList>

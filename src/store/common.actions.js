@@ -20,3 +20,14 @@ export const aSetCurrency = (data) => ({
   type: types.SET_CURRENCY,
   payload: data,
 });
+
+// PRODUCT
+export const aSetActiveImage = (data) => ({
+  type: types.SET_ACTIVE_IMAGE,
+  payload: data,
+});
+
+export const aSetActiveSize = (data) => ({
+  type: types.SET_ACTIVE_SIZE,
+  payload: data,
+});

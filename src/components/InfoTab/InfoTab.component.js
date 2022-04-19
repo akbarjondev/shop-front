@@ -16,20 +16,27 @@ class InfoTab extends React.Component {
               <div className="attrs__items">
                 {attribute.items.map((item) => {
                   return (
-                    <div
+                    <button
                       key={item.id}
-                      data-value={item.value}
-                      className="attrs__item"
+                      className={`attrs__item ${
+                        attribute.name === "Color" && "attrs__item--color"
+                      }`}
+                      style={{
+                        backgroundColor:
+                          attribute.name === "Color" ? item.value : "",
+                      }}
                     >
-                      {item.displayValue}
-                    </div>
+                      <span className="attrs__display-name">
+                        {item.displayValue}
+                      </span>
+                    </button>
                   );
                 })}
               </div>
             </div>
           );
         })}
-        <h4 className="infotab__size">Price:</h4>
+        <h4 className="infotab__price-heading">Price:</h4>
         <div className="infotab__price">
           {this.props.currency.currentCurrency.symbol}
           {
@@ -40,7 +47,11 @@ class InfoTab extends React.Component {
             ).amount
           }
         </div>
-        <button className="infotab__btn">Add to cart</button>
+        {product.inStock ? (
+          <button className="infotab__btn">Add to cart</button>
+        ) : (
+          <div className="infotab__btn infotab__btn--stock">Out of stock</div>
+        )}
         <div
           className="infotab__description"
           dangerouslySetInnerHTML={{ __html: product.description }}

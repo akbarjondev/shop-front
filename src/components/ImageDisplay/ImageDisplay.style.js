@@ -7,6 +7,7 @@ export default styled.div.attrs({
   justify-content: space-between;
   align-items: flex-start;
   max-width: 730px;
+  width: 100%;
 
   .display__left {
     max-width: 80px;

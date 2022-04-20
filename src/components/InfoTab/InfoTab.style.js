@@ -47,17 +47,6 @@ export default styled.div.attrs({
     gap: 12px;
   }
 
-  .attrs__input {
-    :checked + .attrs__item--color {
-      box-shadow: 0 0 0px 4px ${colors.black};
-    }
-
-    :checked + .attrs__item {
-      background-color: ${colors.black};
-      color: ${colors.white};
-    }
-  }
-
   .attrs__item {
     display: block;
     min-width: 63px;
@@ -65,12 +54,21 @@ export default styled.div.attrs({
     border: 1px solid ${colors.black};
     text-align: center;
     cursor: pointer;
-    background-color: white;
+    background-color: ${colors.white};
     transition: transform 0.3s ease;
 
     :hover {
       box-shadow: 0 0 0px 4px ${colors.green};
     }
+  }
+
+  .attrs__item--active {
+    background-color: ${colors.black};
+    color: ${colors.white};
+  }
+
+  .attrs__item--active.attrs__item--color {
+    box-shadow: 0 0 0px 4px ${colors.black};
   }
 
   .attrs__item.attrs__item--color {

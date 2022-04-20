@@ -73,8 +73,59 @@ const rProduct = (state = initialProduct, action) => {
   }
 };
 
+// CART
+const initialCartState = {
+  list: [
+    // {
+    //   product: "apple-imac-2021",
+    //   quantity: 1,
+    //   attributes: [
+    //     {
+    //       id: "size",
+    //       value: "M",
+    //     },
+    //   ],
+    // },
+  ],
+};
+const rCart = (state = initialCartState, action) => {
+  switch (action.type) {
+    case types.SELECT_PRODUCT:
+      return {
+        ...state,
+        list: [...state.list, action.payload],
+      };
+    case types.EDIT_PRODUCT:
+      let currentProduct = state.list.find(
+        (item) => item.product === action.payload.product
+      );
+
+      return {
+        ...state,
+        list: [
+          ...state.list.filter(
+            (item) => item.product !== currentProduct.product
+          ),
+          {
+            ...currentProduct,
+            ...action.payload,
+            attributes: [
+              ...currentProduct.attributes.filter(
+                (attr) => attr.id !== action.payload.attributes[0].id
+              ),
+              ...action.payload.attributes,
+            ],
+          },
+        ],
+      };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   currency: rCurrency,
   categories: rCategories,
   product: rProduct,
+  cart: rCart,
 });

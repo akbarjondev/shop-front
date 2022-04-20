@@ -33,4 +33,17 @@ export const aSetSize = (data) => ({
 });
 
 // CART
-// export const
+export const aSelectProduct = (data) => ({
+  type: types.SELECT_PRODUCT,
+  payload: data,
+});
+
+export const aEditProduct = (data) => ({
+  type: types.EDIT_PRODUCT,
+  payload: data,
+});
+
+export const aDeleteProduct = (data) => ({
+  type: types.DELETE_PRODUCT,
+  payload: data,
+});

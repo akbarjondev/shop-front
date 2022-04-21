@@ -47,3 +47,8 @@ export const aDeleteProduct = (data) => ({
   type: types.DELETE_PRODUCT,
   payload: data,
 });
+
+export const aAddOneProduct = (data) => ({
+  type: types.ADD_ONE_PRODUCT,
+  payload: data,
+});

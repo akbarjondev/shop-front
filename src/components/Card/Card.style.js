@@ -6,6 +6,9 @@ export default styled.div.attrs({
   className: "card",
 })`
   display: flex;
+  max-width: 386px;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   padding: 16px;
   background-color: ${colors.white};
@@ -26,6 +29,7 @@ export default styled.div.attrs({
   .card__top {
     position: relative;
     order: -1;
+    height: 330px;
   }
 
   .card__image {

@@ -6,11 +6,15 @@ export default styled.div.attrs({
 })`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   margin-top: 103px;
   gap: 16px;
 
-  a {
+  .cardlist__link {
+    display: block;
+    max-width: 386px;
+    width: 100%;
+    height: 444px;
     text-decoration: none;
     color: ${colors.black};
   }

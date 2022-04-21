@@ -1,22 +1,58 @@
 import React from "react";
 import { connect } from "react-redux";
-import { aSelectProduct, aEditProduct } from "../../store/common.actions";
+import {
+  aSelectProduct,
+  aEditProduct,
+  aAddOneProduct,
+} from "../../store/common.actions";
 import StyledInfoTab from "./InfoTab.style";
 
 class InfoTab extends React.Component {
   constructor(props) {
     super(props);
 
-    this.attributeWrapper = React.createRef();
+    this.state = {
+      productAttributesCount: this.props.product.attributes.length,
+      isAddButtonDisabled: true,
+    };
+
+    this.refAttributeWrapper = React.createRef();
 
     this.attributeClicked = this.attributeClicked.bind(this);
   }
 
   componentDidMount() {
-    this.attributeWrapper.current.addEventListener(
+    this.refAttributeWrapper.current.addEventListener(
       "click",
       this.attributeClicked
     );
+
+    // check selected attrs
+    this.checkAllAttributesSelected();
+  }
+
+  componentDidUpdate() {
+    // check selected attrs
+    this.checkAllAttributesSelected();
+  }
+
+  // check if all attributes selected
+  checkAllAttributesSelected() {
+    // find product is exist in the temporary list
+    let isProductExist = this.props.cart.list.find(
+      (item) => item.product === this.props.product.id
+    );
+
+    // check if all attributes are selected then remove disabled from 'add to cart' btn
+    if (
+      Boolean(isProductExist) &&
+      this.state.productAttributesCount === isProductExist.attributes.length &&
+      this.state.isAddButtonDisabled
+    ) {
+      this.setState({
+        isAddButtonDisabled: false,
+      });
+    }
   }
 
   // select product's attribute and add it to cart
@@ -56,14 +92,23 @@ class InfoTab extends React.Component {
     }
   }
 
+  // iterate product count
+  addOneProduct(productId) {
+    this.props.addOneProduct({
+      product: productId,
+    });
+  }
+
   render() {
     const { product } = this.props;
+
+    console.log(this.props.cart.list);
 
     return (
       <StyledInfoTab>
         <h2 className="infotab__heading">{product.name}</h2>
         <h3 className="infotab__brand">{product.brand}</h3>
-        <div className="infotab__wrapper" ref={this.attributeWrapper}>
+        <div className="infotab__wrapper" ref={this.refAttributeWrapper}>
           {product.attributes.map((attribute) => {
             return (
               <div key={attribute.id} className="attrs infotab__attrs">
@@ -125,7 +170,13 @@ class InfoTab extends React.Component {
           }
         </div>
         {product.inStock ? (
-          <button className="infotab__btn">Add to cart</button>
+          <button
+            disabled={this.state.isAddButtonDisabled}
+            onClick={() => this.addOneProduct(product.id)}
+            className="infotab__btn"
+          >
+            Add to cart
+          </button>
         ) : (
           <div className="infotab__btn infotab__btn--stock">Out of stock</div>
         )}
@@ -145,6 +196,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   selectProduct: (data) => dispatch(aSelectProduct(data)),
   editProduct: (data) => dispatch(aEditProduct(data)),
+  addOneProduct: (data) => dispatch(aAddOneProduct(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfoTab);

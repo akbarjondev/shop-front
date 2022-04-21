@@ -109,12 +109,30 @@ const rCart = (state = initialCartState, action) => {
           {
             ...currentProduct,
             ...action.payload,
+            quantity: currentProduct.quantity++,
             attributes: [
               ...currentProduct.attributes.filter(
                 (attr) => attr.id !== action.payload.attributes[0].id
               ),
               ...action.payload.attributes,
             ],
+          },
+        ],
+      };
+    case types.ADD_ONE_PRODUCT:
+      let findedProduct = state.list.find(
+        (item) => item.product === action.payload.product
+      );
+
+      return {
+        ...state,
+        list: [
+          ...state.list.filter(
+            (item) => item.product !== findedProduct.product
+          ),
+          {
+            ...findedProduct,
+            quantity: ++findedProduct.quantity,
           },
         ],
       };

@@ -115,6 +115,7 @@ export default styled.div.attrs({
 
     :disabled {
       opacity: 0.5;
+      cursor: not-allowed;
     }
 
     :hover {

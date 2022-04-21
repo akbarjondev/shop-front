@@ -26,7 +26,11 @@ class CardList extends React.Component {
             .filter((list) => list.name === activeCategory)[0]
             .products.map((item) => {
               return (
-                <Link to={`/product/${item.id}`} key={item.id}>
+                <Link
+                  className="cardlist__link"
+                  to={`/product/${item.id}`}
+                  key={item.id}
+                >
                   <Card
                     id={item.id}
                     image={item.gallery[0]}

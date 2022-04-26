@@ -52,3 +52,13 @@ export const aAddOneProduct = (data) => ({
   type: types.ADD_ONE_PRODUCT,
   payload: data,
 });
+
+export const aRemoveOneProduct = (data) => ({
+  type: types.REMOVE_ONE_PRODUCT,
+  payload: data,
+});
+
+export const aCheckOut = (data) => ({
+  type: types.CHECK_OUT,
+  payload: data,
+});

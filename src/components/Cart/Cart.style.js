@@ -7,12 +7,35 @@ export default styled.div.attrs({
   background-color: transparent;
   border: none;
   padding: 0;
-  cursor: pointer;
 
   .cart__wrapper {
     position: relative;
     z-index: 2;
-    cursor: auto;
+  }
+
+  .cart__button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .cart__counter {
+    position: absolute;
+    left: 13px;
+    bottom: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    background-color: ${colors.black};
+    color: ${colors.white};
+    font-weight: 700;
+    font-family: "Roboto";
+    font-size: 14px;
+    line-height: 16px;
   }
 
   .cart__dropdown {
@@ -22,6 +45,7 @@ export default styled.div.attrs({
     background-color: ${colors.white};
     padding: 8px 16px 20px;
     width: 325px;
+    visibility: ${(props) => (props.cartOpen ? "visible" : "hidden")};
   }
 
   .cart__title {
@@ -38,16 +62,20 @@ export default styled.div.attrs({
     margin-top: 25px;
     display: flex;
     flex-direction: column;
+    max-height: 540px;
+    overflow-y: auto;
   }
 
   .info {
     margin-bottom: 40px;
     display: flex;
+    cursor: default;
 
     &__left {
       max-width: 136px;
       line-height: 26px;
       font-size: 16px;
+      width: 100%;
     }
 
     &__title {
@@ -63,21 +91,40 @@ export default styled.div.attrs({
 
     &__attributes {
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
     }
 
+    &__attribute-wrapper {
+      display: flex;
+      border: 1px solid ${colors.black};
+      max-width: 130px;
+      width: 100%;
+    }
+
     &__attribute {
-      text-align: center;
+      text-align: left;
       min-width: 24px;
       height: 24px;
       font-size: 14px;
       font-weight: 4;
       line-height: 1.6;
-      padding: 0;
+      padding: 0px;
       padding-left: 8px;
       padding-right: 8px;
       background-color: #ffffff;
-      border: 1px solid ${colors.black};
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:first-child {
+        width: 60%;
+        border-right: 1px solid ${colors.black};
+      }
+
+      &:last-child {
+        width: 40%;
+      }
 
       &--inactive {
         opacity: 0.5;
@@ -90,15 +137,25 @@ export default styled.div.attrs({
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      margin-left: 18px;
+      margin-left: auto;
       margin-right: 10px;
     }
 
     &__rugulator {
+      border: 1px solid ${colors.black};
       cursor: pointer;
+
+      &:active {
+        background-color: ${colors.black};
+        color: ${colors.white};
+      }
     }
 
     &__image {
+      width: 105px;
+      height: 137px;
+      object-fit: contain;
+      object-position: center;
       align-self: center;
     }
 
@@ -156,5 +213,6 @@ export default styled.div.attrs({
     background-color: #393748;
     opacity: 0.22;
     cursor: auto;
+    visibility: ${(props) => (props.cartOpen ? "visible" : "hidden")};
   }
 `;

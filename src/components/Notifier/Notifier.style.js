@@ -13,6 +13,7 @@ export default styled.div.attrs({
   background-color: ${colors.green};
   color: ${colors.white};
   transition: all 0.3s ease-in-out;
+  z-index: 100000;
 
   &.notifier--active {
     top: ${(props) => (props.open ? "0px" : "")};

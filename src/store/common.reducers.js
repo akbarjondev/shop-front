@@ -78,6 +78,7 @@ const rProduct = (state = initialProduct, action) => {
 const initialCartState = {
   list: [
     // {
+    //   productName: "Apple iMac 2021",
     //   product: "apple-imac-2021",
     //   quantity: 1,
     //   attributes: [
@@ -139,6 +140,31 @@ const rCart = (state = initialCartState, action) => {
             quantity: ++findedProduct.quantity,
           },
         ],
+      };
+
+    case types.REMOVE_ONE_PRODUCT:
+      let findRemoveProduct = helpers.findedProduct(
+        state.list,
+        action.payload.product
+      );
+
+      return {
+        ...state,
+        list: [
+          ...state.list.filter(
+            (item) => item.product !== findRemoveProduct.product
+          ),
+          {
+            ...findRemoveProduct,
+            inCart: findRemoveProduct.quantity - 1 === 0 ? false : true,
+            quantity: --findRemoveProduct.quantity,
+          },
+        ],
+      };
+
+    case types.CHECK_OUT:
+      return {
+        list: [],
       };
     default:
       return state;

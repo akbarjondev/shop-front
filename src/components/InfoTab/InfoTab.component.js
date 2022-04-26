@@ -70,6 +70,7 @@ class InfoTab extends React.Component {
       event.target.contains(event.target)
     ) {
       let { product, id, value } = event.target.dataset;
+      let { name, prices, gallery } = this.props.product;
 
       let findedProduct = this.props.cart.list.find(
         (item) => item.product === product
@@ -77,7 +78,10 @@ class InfoTab extends React.Component {
 
       if (findedProduct === undefined) {
         this.props.selectProduct({
+          productName: name,
+          prices,
           product,
+          image: gallery[0],
           quantity: 0,
           inCart: false,
           attributes: [
@@ -89,7 +93,10 @@ class InfoTab extends React.Component {
         });
       } else {
         this.props.editProduct({
+          productName: name,
+          prices,
           product,
+          image: gallery[0],
           attributes: [
             {
               id,
@@ -120,9 +127,6 @@ class InfoTab extends React.Component {
 
   render() {
     const { product } = this.props;
-
-    console.log(this.props.cart.list);
-    // console.log(this.state);
 
     return (
       <>

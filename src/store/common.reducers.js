@@ -162,6 +162,21 @@ const rCart = (state = initialCartState, action) => {
         ],
       };
 
+    case types.DELETE_PRODUCT:
+      let deleteProduct = helpers.findedProduct(
+        state.list,
+        action.payload.product
+      );
+
+      return {
+        ...state,
+        list: [
+          ...state.list.filter(
+            (item) => item.product !== deleteProduct.product
+          ),
+        ],
+      };
+
     case types.CHECK_OUT:
       return {
         list: [],

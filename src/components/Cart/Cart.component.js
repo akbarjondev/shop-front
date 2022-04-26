@@ -7,6 +7,7 @@ import {
   aRemoveOneProduct,
   aAddOneProduct,
   aCheckOut,
+  aDeleteProduct,
 } from "./../../store/common.actions";
 
 class Cart extends React.Component {
@@ -16,8 +17,6 @@ class Cart extends React.Component {
     this.state = {
       cartOpen: false,
     };
-
-    console.log(this.state);
 
     this.refCartButton = React.createRef();
     this.clickOutside = this.clickOutside.bind(this);
@@ -38,7 +37,6 @@ class Cart extends React.Component {
       this.refCartButton &&
       !this.refCartButton.current.contains(event.target)
     ) {
-      // console.log(event.target.containes());
       this.setState({
         cartOpen: !this.state.cartOpen,
       });
@@ -81,11 +79,12 @@ class Cart extends React.Component {
             <div className="infos cart__items">
               {this.props.cart.list.map((product) => {
                 if (product.inCart) {
-                  let productPrice =
-                    product.prices.filter(
-                      (price) =>
-                        price.currency.label === this.props.currency.label
-                    )[0].amount * product.quantity;
+                  let productAmount = product.prices.filter(
+                    (price) =>
+                      price.currency.label === this.props.currency.label
+                  )[0].amount;
+
+                  let productPrice = productAmount * product.quantity;
 
                   sumProductPrice += productPrice;
 
@@ -95,7 +94,7 @@ class Cart extends React.Component {
                         <h4 className="info__title">{product.productName}</h4>
                         <div className="info__price">
                           {this.props.currency.symbol}
-                          {productPrice.toFixed(2)}
+                          {productAmount.toFixed(2)}
                         </div>
                         <div className="info__attributes">
                           {product.attributes.map((item) => (
@@ -142,13 +141,21 @@ class Cart extends React.Component {
                           -
                         </button>
                       </div>
-                      <img
-                        className="info__image"
-                        src={product.image}
-                        alt="product title"
-                        width={105}
-                        height={137}
-                      />
+                      <div className="info__right">
+                        <img
+                          className="info__image"
+                          src={product.image}
+                          alt="product title"
+                          width={105}
+                          height={137}
+                        />
+                        <button
+                          className="info__delete"
+                          onClick={() => this.props.deleteProduct(product)}
+                        >
+                          <span className="visually-hidden">Delete item</span>
+                        </button>
+                      </div>
                     </div>
                   );
                 }
@@ -195,6 +202,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   incrementProduct: (data) => dispatch(aAddOneProduct(data)),
   decrementProduct: (data) => dispatch(aRemoveOneProduct(data)),
+  deleteProduct: (data) => dispatch(aDeleteProduct(data)),
   checkOut: (data) => dispatch(aCheckOut(data)),
 });
 

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../config";
+import trashIcon from "./../../assets/images/trash_full.svg";
 
 export default styled.div.attrs({
   className: "cart",
@@ -149,6 +150,33 @@ export default styled.div.attrs({
         background-color: ${colors.black};
         color: ${colors.white};
       }
+    }
+
+    &__right {
+      position: relative;
+
+      &:hover .info__delete {
+        visibility: visible;
+      }
+    }
+
+    &__delete {
+      visibility: hidden;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      background-image: url(${trashIcon});
+      background-color: ${colors.red};
+      border: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: visibility 0.1s ease-in-out;
+      cursor: pointer;
     }
 
     &__image {

@@ -32,6 +32,7 @@ const mapStateToProps = (state) => ({
   selectedImage: state.product.selectedImageURL,
   selectedSize: state.product.selectedSize,
   currency: state.currency,
+  cartList: state.cart.list,
 });
 
 const mapDispatchToProps = (dispatch) => ({

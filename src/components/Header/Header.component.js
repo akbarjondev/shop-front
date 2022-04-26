@@ -9,13 +9,15 @@ class Header extends React.Component {
   render() {
     return (
       <StyledHeader>
-        <CategoryList />
-        <Link to="/">
-          <img src={logo} alt="Shop company logo" width={41} height={41} />
-        </Link>
-        <div className="header__wrapper">
-          <Currency />
-          <Cart />
+        <div className="header-container container">
+          <CategoryList />
+          <Link to="/">
+            <img src={logo} alt="Shop company logo" width={41} height={41} />
+          </Link>
+          <div className="header__wrapper">
+            <Currency />
+            <Cart />
+          </div>
         </div>
       </StyledHeader>
     );

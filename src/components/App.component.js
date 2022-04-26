@@ -25,18 +25,20 @@ class App extends React.Component {
                 Make easy your online shopping
               </h1>
               <Header />
-              <Switch>
-                <Route path="/" exact>
-                  <Home />
-                </Route>
-                <Route path="/cart" exact>
-                  <CartPage />
-                </Route>
-                <Route path="/product/:productId" component={ProductInfo} />
-                <Route path="*">
-                  <NoPage />
-                </Route>
-              </Switch>
+              <div className="container">
+                <Switch>
+                  <Route path="/" exact>
+                    <Home />
+                  </Route>
+                  <Route path="/cart" exact>
+                    <CartPage />
+                  </Route>
+                  <Route path="/product/:productId" component={ProductInfo} />
+                  <Route path="*">
+                    <NoPage />
+                  </Route>
+                </Switch>
+              </div>
             </StyledApp>
           </BrowserRouter>
         </Provider>

@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import * as types from "./common.types";
+import * as helpers from "./../helpers";
 
 // CATEGORIES
 const initialCategories = {
@@ -96,8 +97,9 @@ const rCart = (state = initialCartState, action) => {
         list: [...state.list, action.payload],
       };
     case types.EDIT_PRODUCT:
-      let currentProduct = state.list.find(
-        (item) => item.product === action.payload.product
+      let currentProduct = helpers.findedProduct(
+        state.list,
+        action.payload.product
       );
 
       return {
@@ -120,8 +122,9 @@ const rCart = (state = initialCartState, action) => {
         ],
       };
     case types.ADD_ONE_PRODUCT:
-      let findedProduct = state.list.find(
-        (item) => item.product === action.payload.product
+      let findedProduct = helpers.findedProduct(
+        state.list,
+        action.payload.product
       );
 
       return {
@@ -132,6 +135,7 @@ const rCart = (state = initialCartState, action) => {
           ),
           {
             ...findedProduct,
+            inCart: true,
             quantity: ++findedProduct.quantity,
           },
         ],

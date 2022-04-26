@@ -32,10 +32,7 @@ class CardList extends React.Component {
                   key={item.id}
                 >
                   <Card
-                    id={item.id}
-                    image={item.gallery[0]}
-                    title={item.name}
-                    inStock={item.inStock}
+                    product={item}
                     price={
                       this.props.currency.currentCurrency.symbol +
                       item.prices.filter(

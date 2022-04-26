@@ -17,6 +17,8 @@ class Cart extends React.Component {
       cartOpen: false,
     };
 
+    console.log(this.state);
+
     this.refCartButton = React.createRef();
     this.clickOutside = this.clickOutside.bind(this);
     this.cartHandler = this.cartHandler.bind(this);
@@ -97,7 +99,10 @@ class Cart extends React.Component {
                         </div>
                         <div className="info__attributes">
                           {product.attributes.map((item) => (
-                            <div className="info__attribute-wrapper">
+                            <div
+                              className="info__attribute-wrapper"
+                              key={item.id}
+                            >
                               <div className="info__attribute" title={item.id}>
                                 {item.id}
                               </div>
@@ -166,7 +171,7 @@ class Cart extends React.Component {
               <button
                 className="info__button"
                 onClick={() => {
-                  alert("We receive your order :)");
+                  alert("We have received your order, thank you :)");
                   this.props.checkOut();
                 }}
               >

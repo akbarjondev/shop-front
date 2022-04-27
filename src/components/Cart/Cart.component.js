@@ -137,6 +137,7 @@ class Cart extends React.Component {
                         <button
                           onClick={() => this.props.decrementProduct(product)}
                           className="info__rugulator info__attribute"
+                          disabled={product.quantity === 1 ? true : false}
                         >
                           -
                         </button>
@@ -181,6 +182,7 @@ class Cart extends React.Component {
                   alert("We have received your order, thank you :)");
                   this.props.checkOut();
                 }}
+                disabled={numberOfItem === 0 ? true : false}
               >
                 Check out
               </button>

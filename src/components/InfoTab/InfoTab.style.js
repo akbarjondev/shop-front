@@ -130,6 +130,12 @@ export default styled.div.attrs({
   }
 
   .infotab__description {
+    font-family: "Roboto";
+    font-weight: 400;
+    line-height: 26px;
+    font-size: 16px;
     margin-top: 20px;
+    max-height: 250px;
+    overflow-x: scroll;
   }
 `;

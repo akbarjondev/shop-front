@@ -53,9 +53,12 @@ class InfoTab extends React.Component {
 
     // check if all attributes are selected then remove disabled from 'add to cart' btn
     if (
-      Boolean(isProductExist) &&
-      this.state.productAttributesCount === isProductExist.attributes.length &&
-      this.state.isAddButtonDisabled
+      (Boolean(isProductExist) &&
+        this.state.productAttributesCount ===
+          isProductExist.attributes.length &&
+        this.state.isAddButtonDisabled) ||
+      (this.state.productAttributesCount === 0 &&
+        this.state.isAddButtonDisabled)
     ) {
       this.setState({
         isAddButtonDisabled: false,

@@ -14,23 +14,16 @@ class InfoTab extends React.Component {
 
     this.state = {
       productAttributesCount: this.props.product.attributes.length,
-      checkedButtonCounter: 0,
-      isAddButtonDisabled: true,
       timerId: null,
       openNotifier: false,
+      selectedAttributes: [],
+      readyForCart: false,
     };
 
-    this.refAttributeWrapper = React.createRef();
-
-    this.attributeClicked = this.attributeClicked.bind(this);
+    this.attributeSelector = this.attributeSelector.bind(this);
   }
 
   componentDidMount() {
-    this.refAttributeWrapper.current.addEventListener(
-      "click",
-      this.attributeClicked
-    );
-
     // check selected attrs
     this.checkAllAttributesSelected();
   }
@@ -42,6 +35,19 @@ class InfoTab extends React.Component {
 
   componentWillUnmount() {
     clearTimeout(this.state.timerId);
+  }
+
+  attributeSelector(id, value) {
+    this.setState({
+      readyForCart: true,
+      selectedAttributes: [
+        ...this.state.selectedAttributes.filter((attr) => attr.id !== id),
+        {
+          id,
+          value,
+        },
+      ],
+    });
   }
 
   // check if all attributes selected
@@ -66,60 +72,33 @@ class InfoTab extends React.Component {
     }
   }
 
-  // select product's attribute and add it to cart
-  attributeClicked(event) {
-    if (
-      event.target.nodeName === "BUTTON" &&
-      event.target.contains(event.target)
-    ) {
-      let { product, id, value } = event.target.dataset;
-      let { name, prices, gallery } = this.props.product;
+  // add product to store
+  addOneProduct(product) {
+    let {
+      id,
+      name,
+      gallery: [image],
+      prices,
+    } = product;
+    const uniqId = this.state.selectedAttributes
+      .sort((id1, id2) => (id1.id < id2.id ? -1 : id1.id > id2.id ? 1 : 0))
+      .map((attr) => attr.value)
+      .join("-");
 
-      let findedProduct = this.props.cart.list.find(
-        (item) => item.product === product
-      );
-
-      if (findedProduct === undefined) {
-        this.props.selectProduct({
-          productName: name,
-          prices,
-          product,
-          image: gallery[0],
-          quantity: 0,
-          inCart: false,
-          attributes: [
-            {
-              id,
-              value,
-            },
-          ],
-        });
-      } else {
-        this.props.editProduct({
-          productName: name,
-          prices,
-          product,
-          image: gallery[0],
-          attributes: [
-            {
-              id,
-              value,
-            },
-          ],
-        });
-      }
-    }
-  }
-
-  // iterate product count
-  addOneProduct(productId) {
-    this.props.addOneProduct({
-      product: productId,
+    this.props.selectProduct({
+      productName: name,
+      prices: prices,
+      product: id + uniqId,
+      image: image,
+      quantity: 1,
+      inCart: true,
+      attributes: this.state.selectedAttributes,
     });
 
-    // set Notifier
     this.setState({
       openNotifier: true,
+      readyForCart: false,
+      selectedAttributes: [],
       timerId: setTimeout(() => {
         this.setState({
           openNotifier: false,
@@ -138,7 +117,7 @@ class InfoTab extends React.Component {
           <h2 className="infotab__heading">{product.name}</h2>
           <h3 className="infotab__brand">{product.brand}</h3>
           <div className="infotab__wrapper" ref={this.refAttributeWrapper}>
-            {product.attributes.map((attribute, attributeIndex) => {
+            {product.attributes.map((attribute) => {
               return (
                 <div key={attribute.id} className="attrs infotab__attrs">
                   <h4 className="attrs__heading">{attribute.name}:</h4>
@@ -147,26 +126,17 @@ class InfoTab extends React.Component {
                       // active class when select attribute
                       let isActiveClass = "";
 
-                      // check if attribute is selected and make active class based on iteration
-                      let findedProduct = this.props.cart.list.find(
-                        (item) => item.product === product.id
-                      );
                       if (
-                        this.props.cart.list.length > 0 &&
-                        findedProduct &&
-                        !findedProduct.inCart
+                        this.state.selectedAttributes.length > 0 &&
+                        this.state.readyForCart
                       ) {
-                        let attribures = findedProduct.attributes;
-
-                        if (attribures.length > 0) {
-                          isActiveClass = attribures.find(
-                            (attr) => attr.id === attribute.id
-                          )
-                            ? attribures.find(
-                                (attr) => attr.id === attribute.id
-                              ).value === item.value
-                            : false;
-                        }
+                        isActiveClass = this.state.selectedAttributes.find(
+                          (attr) => attr.id === attribute.id
+                        )
+                          ? this.state.selectedAttributes.find(
+                              (attr) => attr.id === attribute.id
+                            ).value === item.value
+                          : false;
                       }
 
                       return (
@@ -185,9 +155,7 @@ class InfoTab extends React.Component {
                               attribute.name === "Color" ? item.value : "",
                           }}
                           onClick={() =>
-                            this.setState({
-                              checkedButtonCounter: attributeIndex + 1,
-                            })
+                            this.attributeSelector(attribute.id, item.value)
                           }
                         >
                           {attribute.name === "Color" ? "" : item.displayValue}
@@ -212,8 +180,11 @@ class InfoTab extends React.Component {
           </div>
           {product.inStock ? (
             <button
-              disabled={this.state.isAddButtonDisabled}
-              onClick={() => this.addOneProduct(product.id)}
+              disabled={
+                this.state.productAttributesCount !==
+                this.state.selectedAttributes.length
+              }
+              onClick={() => this.addOneProduct(product)}
               className="infotab__btn"
             >
               Add to cart

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { colors } from "../../config";
-import trashIcon from "./../../assets/images/trash_full.svg";
 
 export default styled.div.attrs({
   className: "cart",
@@ -67,166 +66,46 @@ export default styled.div.attrs({
     overflow-y: auto;
   }
 
-  .info {
-    margin-bottom: 40px;
+  .info__total {
     display: flex;
-    cursor: default;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
 
-    &__left {
-      max-width: 136px;
-      line-height: 26px;
-      font-size: 16px;
-      width: 100%;
-    }
-
-    &__title {
-      font-weight: 300;
-      margin: 0;
-      margin-bottom: 5px;
-    }
-
-    &__price {
+    &-left {
       font-weight: 500;
-      margin-bottom: 27px;
+      font-family: "Roboto";
+      font-size: 16px;
+      line-height: 18px;
     }
 
-    &__attributes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    &-right {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 26px;
     }
+  }
 
-    &__attribute-wrapper {
-      display: flex;
-      border: 1px solid ${colors.black};
-      max-width: 130px;
-      width: 100%;
-    }
+  .info__footer {
+    display: flex;
+    justify-content: space-between;
 
-    &__attribute {
-      text-align: left;
-      min-width: 24px;
-      height: 24px;
+    .info__button {
+      padding: 16px 32px;
+      text-transform: uppercase;
+      font-weight: 600;
       font-size: 14px;
-      font-weight: 4;
-      line-height: 1.6;
-      padding: 0px;
-      padding-left: 8px;
-      padding-right: 8px;
-      background-color: #ffffff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      &:first-child {
-        width: 60%;
-        border-right: 1px solid ${colors.black};
-      }
-
-      &:last-child {
-        width: 40%;
-      }
-
-      &--inactive {
-        opacity: 0.5;
-        background-color: #a6a6a6;
-      }
-    }
-
-    &__middle {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      margin-left: auto;
-      margin-right: 10px;
-    }
-
-    &__rugulator {
+      line-height: 17px;
+      background-color: ${colors.white};
       border: 1px solid ${colors.black};
+      text-decoration: none;
+      color: ${colors.black};
       cursor: pointer;
 
-      &:active {
-        background-color: ${colors.black};
+      :last-child {
+        background-color: ${colors.green};
+        border-color: ${colors.green};
         color: ${colors.white};
-      }
-    }
-
-    &__right {
-      position: relative;
-
-      &:hover .info__delete {
-        visibility: visible;
-      }
-    }
-
-    &__delete {
-      visibility: hidden;
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      background-image: url(${trashIcon});
-      background-color: ${colors.red};
-      border: none;
-      background-repeat: no-repeat;
-      background-position: center;
-      border-radius: 50%;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      transition: visibility 0.1s ease-in-out;
-      cursor: pointer;
-    }
-
-    &__image {
-      width: 105px;
-      height: 137px;
-      object-fit: contain;
-      object-position: center;
-      align-self: center;
-    }
-
-    &__total {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 35px;
-
-      &-left {
-        font-weight: 500;
-        font-family: "Roboto";
-        font-size: 16px;
-        line-height: 18px;
-      }
-
-      &-right {
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 26px;
-      }
-    }
-
-    &__footer {
-      display: flex;
-      justify-content: space-between;
-
-      .info__button {
-        padding: 16px 32px;
-        text-transform: uppercase;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 17px;
-        background-color: ${colors.white};
-        border: 1px solid ${colors.black};
-        text-decoration: none;
-        color: ${colors.black};
-        cursor: pointer;
-
-        :last-child {
-          background-color: ${colors.green};
-          border-color: ${colors.green};
-          color: ${colors.white};
-        }
       }
     }
   }

@@ -38,11 +38,6 @@ export const aSelectProduct = (data) => ({
   payload: data,
 });
 
-export const aEditProduct = (data) => ({
-  type: types.EDIT_PRODUCT,
-  payload: data,
-});
-
 export const aDeleteProduct = (data) => ({
   type: types.DELETE_PRODUCT,
   payload: data,

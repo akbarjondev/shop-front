@@ -93,35 +93,31 @@ const initialCartState = {
 const rCart = (state = initialCartState, action) => {
   switch (action.type) {
     case types.SELECT_PRODUCT:
-      return {
-        ...state,
-        list: [...state.list, action.payload],
-      };
-    case types.EDIT_PRODUCT:
-      let currentProduct = helpers.findedProduct(
+      let searchBeforeAdd = helpers.findedProduct(
         state.list,
         action.payload.product
       );
 
+      if (searchBeforeAdd) {
+        return {
+          ...state,
+          list: [
+            ...state.list.filter(
+              (item) => item.product !== searchBeforeAdd.product
+            ),
+            {
+              ...searchBeforeAdd,
+              quantity: searchBeforeAdd.quantity + 1,
+            },
+          ],
+        };
+      }
+
       return {
         ...state,
-        list: [
-          ...state.list.filter(
-            (item) => item.product !== currentProduct.product
-          ),
-          {
-            ...currentProduct,
-            ...action.payload,
-            quantity: currentProduct.quantity++,
-            attributes: [
-              ...currentProduct.attributes.filter(
-                (attr) => attr.id !== action.payload.attributes[0].id
-              ),
-              ...action.payload.attributes,
-            ],
-          },
-        ],
+        list: [...state.list, action.payload],
       };
+
     case types.ADD_ONE_PRODUCT:
       let findedProduct = helpers.findedProduct(
         state.list,

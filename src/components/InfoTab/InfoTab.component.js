@@ -1,10 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  aSelectProduct,
-  aEditProduct,
-  aAddOneProduct,
-} from "../../store/common.actions";
+import { aSelectProduct, aAddOneProduct } from "../../store/common.actions";
 import Notifier from "../Notifier/Notifier.component";
 import StyledInfoTab from "./InfoTab.style";
 
@@ -208,7 +204,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   selectProduct: (data) => dispatch(aSelectProduct(data)),
-  editProduct: (data) => dispatch(aEditProduct(data)),
   addOneProduct: (data) => dispatch(aAddOneProduct(data)),
 });
 

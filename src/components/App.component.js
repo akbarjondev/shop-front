@@ -30,7 +30,7 @@ class App extends React.Component {
                   <Route path="/" exact>
                     <Home />
                   </Route>
-                  <Route path="/cart" exact>
+                  <Route path="/bag" exact>
                     <CartPage />
                   </Route>
                   <Route path="/product/:productId" component={ProductInfo} />

@@ -76,6 +76,7 @@ class InfoTab extends React.Component {
       gallery: [image],
       prices,
     } = product;
+
     const uniqId = this.state.selectedAttributes
       .sort((id1, id2) => (id1.id < id2.id ? -1 : id1.id > id2.id ? 1 : 0))
       .map((attr) => attr.value)

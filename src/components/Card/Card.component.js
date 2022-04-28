@@ -4,23 +4,65 @@ import { connect } from "react-redux";
 import { aSelectProduct } from "./../../store/common.actions";
 
 class Card extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  addToCart(event) {
+    event.preventDefault();
+
+    let {
+      name,
+      id,
+      prices,
+      gallery: [image],
+      attributes,
+    } = this.props.product;
+
+    const selectedAttributes = attributes.map((attr) => {
+      return {
+        id: attr.id,
+        value: attr.items[0].value,
+      };
+    });
+
+    const uniqId = selectedAttributes.map((attr) => attr.value).join("-");
+
+    this.props.selectProduct({
+      productName: name,
+      product: id + uniqId,
+      prices: prices,
+      image: image,
+      quantity: 1,
+      inCart: true,
+      attributes: selectedAttributes,
+    });
+  }
+
   render() {
+    let { product, price } = this.props;
+
     return (
-      <StyledCard inStock={this.props.product.inStock}>
+      <StyledCard inStock={product.inStock}>
         <div className="card__info">
-          <h3 className="card__title">{this.props.product.name}</h3>
-          <div className="card__price">{this.props.price}</div>
+          <h3 className="card__title">{product.name}</h3>
+          <div className="card__price">{price}</div>
         </div>
         <div className="card__top">
           <img
             className="card__image"
-            src={this.props.product.gallery[0]}
-            alt={this.props.product.title}
+            src={product.gallery[0]}
+            alt={product.title}
             width={354}
             height={330}
           />
-          {this.props.product.inStock ? (
-            <button className="card__cart-btn">
+          {product.inStock ? (
+            <button
+              className="card__cart-btn"
+              onClick={(e) => this.addToCart(e)}
+            >
               <span className="visually-hidden">Add item to cart</span>
             </button>
           ) : null}

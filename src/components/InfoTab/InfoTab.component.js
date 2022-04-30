@@ -147,7 +147,7 @@ class InfoTab extends React.Component {
                               attribute.name === "Color" ? item.value : "",
                           }}
                           onClick={() =>
-                            this.attributeSelector(attribute.id, item.value)
+                            this.attributeSelector(attribute.name, item.value)
                           }
                         >
                           {attribute.name === "Color" ? "" : item.displayValue}

@@ -2,6 +2,7 @@ import React from "react";
 import StyledBagList from "./BagList.style";
 import Slider from "../Slider/Slider.component";
 import { connect } from "react-redux";
+import { aDeleteProduct } from "../../store/common.actions";
 import CountControlsComponent from "../CountControls/CountControls.component";
 
 class BagList extends React.Component {
@@ -47,6 +48,12 @@ class BagList extends React.Component {
               <div className="baglist__right">
                 <CountControlsComponent product={product} />
                 <Slider images={product.gallery} />
+                <button
+                  className="baglist__delete"
+                  onClick={() => this.props.deleteProduct(product)}
+                >
+                  <span className="visually-hidden">Delete item</span>
+                </button>
               </div>
             </li>
           );
@@ -61,4 +68,8 @@ const mapStateToProps = (state) => ({
   currency: state.currency.currentCurrency,
 });
 
-export default connect(mapStateToProps, {})(BagList);
+const mapDispatchToProps = (dispatch) => ({
+  deleteProduct: (data) => dispatch(aDeleteProduct(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BagList);

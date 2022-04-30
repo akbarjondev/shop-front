@@ -131,7 +131,6 @@ class InfoTab extends React.Component {
                             ).value === item.value
                           : false;
                       }
-
                       return (
                         <button
                           key={item.id}

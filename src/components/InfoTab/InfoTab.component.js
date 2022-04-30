@@ -70,12 +70,7 @@ class InfoTab extends React.Component {
 
   // add product to store
   addOneProduct(product) {
-    let {
-      id,
-      name,
-      gallery: [image],
-      prices,
-    } = product;
+    let { id, name, gallery, prices, brand } = product;
 
     const uniqId = this.state.selectedAttributes
       .sort((id1, id2) => (id1.id < id2.id ? -1 : id1.id > id2.id ? 1 : 0))
@@ -86,10 +81,11 @@ class InfoTab extends React.Component {
       productName: name,
       prices: prices,
       product: id + uniqId,
-      image: image,
+      gallery: gallery,
       quantity: 1,
       inCart: true,
       attributes: this.state.selectedAttributes,
+      brand: brand,
     });
 
     this.setState({

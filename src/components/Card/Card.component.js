@@ -18,13 +18,7 @@ class Card extends React.Component {
   addToCart(event) {
     event.preventDefault();
 
-    let {
-      name,
-      id,
-      prices,
-      gallery: [image],
-      attributes,
-    } = this.props.product;
+    let { name, id, prices, gallery, attributes, brand } = this.props.product;
 
     const selectedAttributes = attributes.map((attr) => {
       return {
@@ -39,10 +33,11 @@ class Card extends React.Component {
       productName: name,
       product: id + uniqId,
       prices: prices,
-      image: image,
+      gallery: gallery,
       quantity: 1,
       inCart: true,
       attributes: selectedAttributes,
+      brand: brand,
     });
 
     this.setState({

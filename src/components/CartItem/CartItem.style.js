@@ -71,25 +71,6 @@ export default styled.div.attrs({
       }
     }
 
-    &__middle {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      margin-left: auto;
-      margin-right: 10px;
-    }
-
-    &__rugulator {
-      border: 1px solid ${colors.black};
-      cursor: pointer;
-
-      &:active {
-        background-color: ${colors.black};
-        color: ${colors.white};
-      }
-    }
-
     &__right {
       position: relative;
 

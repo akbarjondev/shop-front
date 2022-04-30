@@ -1,11 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  aAddOneProduct,
-  aRemoveOneProduct,
-  aDeleteProduct,
-} from "../../store/common.actions";
+import { aDeleteProduct } from "../../store/common.actions";
 import StyledCartItem from "./CartItem.style";
+import CountControls from "../CountControls/CountControls.component";
 
 class CartItem extends React.Component {
   render() {
@@ -43,26 +40,13 @@ class CartItem extends React.Component {
             ))}
           </div>
         </div>
-        <div className="info__middle">
-          <button
-            onClick={() => this.props.incrementProduct(product)}
-            className="info__rugulator info__attribute"
-          >
-            +
-          </button>
-          <div className="info__counter">{product.quantity}</div>
-          <button
-            onClick={() => this.props.decrementProduct(product)}
-            className="info__rugulator info__attribute"
-            disabled={product.quantity === 1 ? true : false}
-          >
-            -
-          </button>
-        </div>
+
+        <CountControls product={product} />
+
         <div className="info__right">
           <img
             className="info__image"
-            src={product.image}
+            src={product.gallery[0]}
             alt="product title"
             width={105}
             height={137}
@@ -84,8 +68,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  incrementProduct: (data) => dispatch(aAddOneProduct(data)),
-  decrementProduct: (data) => dispatch(aRemoveOneProduct(data)),
   deleteProduct: (data) => dispatch(aDeleteProduct(data)),
 });
 

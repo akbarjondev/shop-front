@@ -12,7 +12,6 @@ export const getListOfCategories = gql`
         description
         category
         attributes {
-          id
           name
           type
           items {

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "./../../config";
+import trashIcon from "./../../assets/images/trash_full.svg";
 
 export default styled.ul.attrs({
   className: "baglist",
@@ -51,6 +52,30 @@ export default styled.ul.attrs({
 
     &__right {
       display: flex;
+      position: relative;
+
+      :hover .baglist__delete {
+        visibility: visible;
+      }
+    }
+
+    &__delete {
+      visibility: hidden;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      background-image: url(${trashIcon});
+      background-color: ${colors.red};
+      border: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 0;
+      right: 0px;
+      transition: visibility 0.1s ease-in-out;
+      cursor: pointer;
     }
   }
 

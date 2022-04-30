@@ -9,45 +9,47 @@ import { getListOfCategories } from "./../../graphql/queries";
 
 class CardList extends React.Component {
   componentDidUpdate() {
-    if (this.props.categories.list.length === 0) {
-      this.props.saveCategories(this.props.data.categories);
-    }
+    // if (this.props.categories.list.length === 0) {
+    //   this.props.saveCategories(this.props.data.categories);
+    // }
   }
 
   render() {
-    const { data } = this.props;
     const activeCategory = this.props.categories.activeCategory || "all";
 
-    return (
-      !data.loading &&
-      this.props.categories.list.length && (
-        <StyledCardList listLength={this.props.categories.list.length}>
-          {this.props.categories.list
-            .filter((list) => list.name === activeCategory)[0]
-            .products.map((item) => {
-              return (
-                <Link
-                  className="cardlist__link"
-                  to={`/product/${item.id}`}
-                  key={item.id}
-                >
-                  <Card
-                    product={item}
-                    price={
-                      this.props.currency.currentCurrency.symbol +
-                      item.prices.filter(
-                        (price) =>
-                          price.currency.label ===
-                          this.props.currency.currentCurrency.label
-                      )[0].amount
-                    }
-                  />
-                </Link>
-              );
-            })}
-        </StyledCardList>
-      )
-    );
+    if (!this.props.data.loading) {
+      const { data } = this.props;
+
+      return (
+        data.categories.length && (
+          <StyledCardList listLength={data.categories.length}>
+            {data.categories
+              .filter((list) => list.name === activeCategory)[0]
+              .products.map((item) => {
+                return (
+                  <Link
+                    className="cardlist__link"
+                    to={`/product/${item.id}`}
+                    key={item.id}
+                  >
+                    <Card
+                      product={item}
+                      price={
+                        this.props.currency.currentCurrency.symbol +
+                        item.prices.filter(
+                          (price) =>
+                            price.currency.label ===
+                            this.props.currency.currentCurrency.label
+                        )[0].amount
+                      }
+                    />
+                  </Link>
+                );
+              })}
+          </StyledCardList>
+        )
+      );
+    }
   }
 }
 

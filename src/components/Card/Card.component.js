@@ -22,7 +22,7 @@ class Card extends React.Component {
 
     const selectedAttributes = attributes.map((attr) => {
       return {
-        id: attr.id,
+        id: attr.name,
         value: attr.items[0].value,
       };
     });

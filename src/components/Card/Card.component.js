@@ -20,8 +20,6 @@ class Card extends React.Component {
 
     let { name, id, prices, gallery, attributes, brand } = this.props.product;
 
-    console.log(attributes);
-
     const selectedAttributes = attributes.map((attr) => {
       return {
         id: attr.name,

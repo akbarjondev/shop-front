@@ -113,7 +113,11 @@ class Cart extends React.Component {
             </div>
 
             <div className="info__footer">
-              <Link to="/bag" className="info__button">
+              <Link
+                to="/bag"
+                className="info__button"
+                onClick={() => this.cartHandler()}
+              >
                 View bag
               </Link>
               <button

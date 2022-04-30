@@ -3,12 +3,8 @@ import StyledCart from "./Cart.style";
 import cartImage from "./../../assets/images/cart.svg";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  aRemoveOneProduct,
-  aAddOneProduct,
-  aCheckOut,
-  aDeleteProduct,
-} from "./../../store/common.actions";
+import { aCheckOut } from "./../../store/common.actions";
+import CartItem from "../CartItem/CartItem.component";
 
 class Cart extends React.Component {
   constructor(props) {
@@ -97,80 +93,11 @@ class Cart extends React.Component {
                     sumProductPrice += productPrice;
 
                     return (
-                      <div key={product.product} className="info">
-                        <div className="info__left">
-                          <h4 className="info__title">{product.productName}</h4>
-                          <div className="info__price">
-                            {this.props.currency.symbol}
-                            {productAmount.toFixed(2)}
-                          </div>
-                          <div className="info__attributes">
-                            {product.attributes.map((item) => (
-                              <div
-                                className="info__attribute-wrapper"
-                                key={item.id}
-                              >
-                                <div
-                                  className="info__attribute"
-                                  title={item.id}
-                                >
-                                  {item.id}
-                                </div>
-                                <div
-                                  className="info__attribute"
-                                  title={item.value}
-                                >
-                                  {item.id === "Color" ? (
-                                    <span
-                                      style={{
-                                        display: "inline-block",
-                                        backgroundColor: item.value,
-                                        width: "10px",
-                                        height: "10px",
-                                      }}
-                                    ></span>
-                                  ) : (
-                                    item.value
-                                  )}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="info__middle">
-                          <button
-                            onClick={() => this.props.incrementProduct(product)}
-                            className="info__rugulator info__attribute"
-                          >
-                            +
-                          </button>
-                          <div className="info__counter">
-                            {product.quantity}
-                          </div>
-                          <button
-                            onClick={() => this.props.decrementProduct(product)}
-                            className="info__rugulator info__attribute"
-                            disabled={product.quantity === 1 ? true : false}
-                          >
-                            -
-                          </button>
-                        </div>
-                        <div className="info__right">
-                          <img
-                            className="info__image"
-                            src={product.image}
-                            alt="product title"
-                            width={105}
-                            height={137}
-                          />
-                          <button
-                            className="info__delete"
-                            onClick={() => this.props.deleteProduct(product)}
-                          >
-                            <span className="visually-hidden">Delete item</span>
-                          </button>
-                        </div>
-                      </div>
+                      <CartItem
+                        key={product.product}
+                        product={product}
+                        productAmount={productAmount}
+                      />
                     );
                   }
 
@@ -186,7 +113,11 @@ class Cart extends React.Component {
             </div>
 
             <div className="info__footer">
-              <Link to="/bag" className="info__button">
+              <Link
+                to="/bag"
+                className="info__button"
+                onClick={() => this.cartHandler()}
+              >
                 View bag
               </Link>
               <button
@@ -215,9 +146,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  incrementProduct: (data) => dispatch(aAddOneProduct(data)),
-  decrementProduct: (data) => dispatch(aRemoveOneProduct(data)),
-  deleteProduct: (data) => dispatch(aDeleteProduct(data)),
   checkOut: (data) => dispatch(aCheckOut(data)),
 });
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "@apollo/client/react/hoc";
+import { withRouter } from "react-router-dom/cjs/react-router-dom";
 import { connect } from "react-redux";
 import StyledCategoryList from "./CategoryList.style";
 import { getCategories } from "./../../graphql/queries";
@@ -8,7 +9,10 @@ import { Link } from "react-router-dom";
 
 class CategoryList extends React.Component {
   render() {
-    const { data } = this.props;
+    const {
+      data,
+      location: { pathname },
+    } = this.props;
 
     return (
       !data.loading && (
@@ -19,7 +23,8 @@ class CategoryList extends React.Component {
                 <Link
                   to="/"
                   className={
-                    this.props.activeCategory === category.name
+                    this.props.activeCategory === category.name &&
+                    pathname !== "/bag"
                       ? "list__btn list__btn--active"
                       : "list__btn"
                   }
@@ -49,4 +54,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(graphql(getCategories)(CategoryList));
+)(withRouter(graphql(getCategories)(CategoryList)));

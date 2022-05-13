@@ -5,13 +5,13 @@ import trashIcon from "./../../assets/images/trash_full.svg";
 export default styled.ul.attrs({
   className: "baglist",
 })`
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-
   .baglist {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
     &__item {
       display: flex;
       justify-content: space-between;

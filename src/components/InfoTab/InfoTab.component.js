@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Parser } from "html-to-react";
 import { aSelectProduct, aAddOneProduct } from "../../store/common.actions";
 import Notifier from "../Notifier/Notifier.component";
 import StyledInfoTab from "./InfoTab.style";
@@ -184,10 +185,9 @@ class InfoTab extends React.Component {
           ) : (
             <div className="infotab__btn infotab__btn--stock">Out of stock</div>
           )}
-          <div
-            className="infotab__description"
-            dangerouslySetInnerHTML={{ __html: product.description }}
-          ></div>
+          <div className="infotab__description">
+            {Parser().parse(product.description)}
+          </div>
         </StyledInfoTab>
       </>
     );

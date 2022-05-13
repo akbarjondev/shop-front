@@ -136,6 +136,6 @@ export default styled.div.attrs({
     font-size: 16px;
     margin-top: 20px;
     max-height: 250px;
-    overflow-x: scroll;
+    overflow-y: scroll;
   }
 `;

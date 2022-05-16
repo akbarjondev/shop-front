@@ -4,11 +4,12 @@ import { colors } from "./../../config";
 export default styled.div.attrs({
   className: "cardlist",
 })`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-top: 103px;
-  gap: 16px;
+  & {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 103px;
+    gap: 20px;
+  }
 
   .cardlist__link {
     display: block;

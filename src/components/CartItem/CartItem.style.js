@@ -71,6 +71,12 @@ export default styled.div.attrs({
       }
     }
 
+    &__swatch {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+    }
+
     &__right {
       position: relative;
 

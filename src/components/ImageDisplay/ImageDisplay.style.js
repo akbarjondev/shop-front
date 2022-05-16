@@ -10,8 +10,10 @@ export default styled.div.attrs({
   width: 100%;
 
   .display__left {
-    max-width: 80px;
-    width: 100%;
+    max-height: 550px;
+    overflow-y: auto;
+    width: 100px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     gap: 40px;

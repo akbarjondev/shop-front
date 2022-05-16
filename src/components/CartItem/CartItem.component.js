@@ -25,12 +25,8 @@ class CartItem extends React.Component {
                 <div className="info__attribute" title={item.value}>
                   {item.id === "Color" ? (
                     <span
-                      style={{
-                        display: "inline-block",
-                        backgroundColor: item.value,
-                        width: "10px",
-                        height: "10px",
-                      }}
+                      className="info__swatch"
+                      style={{ backgroundColor: item.value }}
                     ></span>
                   ) : (
                     item.value

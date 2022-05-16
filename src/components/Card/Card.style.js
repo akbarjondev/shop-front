@@ -5,25 +5,27 @@ import whiteCart from "./../../assets/images/cart-white.svg";
 export default styled.div.attrs({
   className: "card",
 })`
-  display: flex;
-  max-width: 386px;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  padding: 16px;
-  background-color: ${colors.white};
-  cursor: pointer;
-  transition: filter 0.2s ease;
+  & {
+    display: flex;
+    max-width: 386px;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    padding: 16px;
+    background-color: ${colors.white};
+    cursor: pointer;
+    transition: filter 0.2s ease;
 
-  // inStock
-  ${(props) => (props.inStock ? "opacity: 1;" : "opacity: 0.5;")}
+    // inStock
+    ${(props) => (props.inStock ? "opacity: 1;" : "opacity: 0.5;")}
 
-  :hover {
-    filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
-  }
+    :hover {
+      filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+    }
 
-  :hover .card__cart-btn {
-    visibility: visible;
+    :hover .card__cart-btn {
+      visibility: visible;
+    }
   }
 
   .card__top {
@@ -35,7 +37,7 @@ export default styled.div.attrs({
   .card__image {
     width: 354px;
     height: 330px;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
   }
 

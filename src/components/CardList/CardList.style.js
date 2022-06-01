@@ -15,7 +15,7 @@ export default styled.div.attrs({
     display: block;
     max-width: 386px;
     width: 100%;
-    height: 444px;
+    height: 465px;
     text-decoration: none;
     color: ${colors.black};
   }

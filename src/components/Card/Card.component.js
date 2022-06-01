@@ -59,6 +59,7 @@ class Card extends React.Component {
         <Notifier open={this.state.openNotifier} />
         <StyledCard inStock={product.inStock}>
           <div className="card__info">
+            <h2 className="card__brand">{product.brand}</h2>
             <h3 className="card__title">{product.name}</h3>
             <div className="card__price">{price}</div>
           </div>

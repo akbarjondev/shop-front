@@ -83,6 +83,12 @@ export default styled.div.attrs({
     line-height: 28px;
   }
 
+  .card__brand {
+    margin: 0%;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
   .card__title {
     margin: 0;
     font-weight: 300;
